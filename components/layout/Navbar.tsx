@@ -3,19 +3,14 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "next-themes";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect } from "react";
 
 export function Navbar() {
-    const { theme, setTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-    // Effect to ensure hydration matches (prevent hydration mismatch for theme icon)
-    const [mounted, setMounted] = React.useState(false);
-    useEffect(() => setMounted(true), []);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -54,15 +49,7 @@ export function Navbar() {
                 </div>
 
                 <div className="hidden md:flex items-center gap-4">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        className="rounded-full w-9 h-9"
-                    >
-                        {mounted && theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-                        <span className="sr-only">Toggle theme</span>
-                    </Button>
+
                     <Button variant="ghost" className="text-foreground hover:bg-black/5 dark:hover:bg-white/10 rounded-full">
                         Log In
                     </Button>
@@ -94,16 +81,7 @@ export function Navbar() {
                         </Link>
                     ))}
                     <div className="h-[1px] bg-border my-2" />
-                    <div className="flex items-center justify-between px-4">
-                        <span className="text-sm font-medium">Switch Theme</span>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        >
-                            {mounted && theme === 'dark' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-                        </Button>
-                    </div>
+
                     <Button variant="outline" className="w-full rounded-xl">
                         Log In
                     </Button>

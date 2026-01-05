@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Cpu, Radio, Scan, Shield, Wifi, Zap } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const features = [
     {
@@ -53,21 +54,19 @@ export function Technology() {
                     <div className="hidden lg:block absolute left-1/2 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-border to-transparent -translate-x-1/2 opacity-30" />
 
                     {features.map((feature, index) => (
-                        <motion.div
-                            key={feature.title}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="bg-background/50 backdrop-blur-sm border border-border p-8 rounded-2xl hover:bg-muted/50 transition-colors z-10"
-                        >
-                            <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 text-cyan-500 border border-cyan-500/20">
-                                {feature.icon}
+                        <Reveal key={feature.title} variant="scale-in" delay={index * 0.1}>
+                            <div
+                                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors z-10 h-full hover:border-white/20 hover:shadow-lg hover:shadow-cyan-500/5 duration-300 group"
+                            >
+                                <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 text-cyan-500 border border-cyan-500/20 group-hover:scale-110 transition-transform">
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                    {feature.description}
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed">
-                                {feature.description}
-                            </p>
-                        </motion.div>
+                        </Reveal>
                     ))}
                 </div>
             </div>

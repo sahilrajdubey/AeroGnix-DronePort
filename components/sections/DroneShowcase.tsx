@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const drones = [
     {
         id: 1,
         name: "AG-X1 Sentinel",
         category: "Surveillance & Recon",
-        image: "/api/placeholder/600/400", // Placeholder
+        image: "/d1.jpeg",
         specs: ["45m Flight Time", "12km Range", "AI Object Detection"],
         description: "Long-range autonomous surveillance drone with thermal imaging and real-time edge processing."
     },
@@ -18,7 +19,7 @@ const drones = [
         id: 2,
         name: "AG-H2 Heavy Lift",
         category: "Logistics & Transport",
-        image: "/api/placeholder/600/400", // Placeholder
+        image: "/d2.jpeg",
         specs: ["25kg Payload", "Hybrid Power", "All-Weather"],
         description: "Heavy-lift multi-rotor designed for autonomous cargo delivery and industrial equipment transport."
     },
@@ -26,7 +27,7 @@ const drones = [
         id: 3,
         name: "AG-S3 Mapper",
         category: "Mapping & Survey",
-        image: "/api/placeholder/600/400", // Placeholder
+        image: "/d3.jpg",
         specs: ["cm-level RTK", "100MP Camera", "LiDAR Ready"],
         description: "High-precision mapping drone capable of surveying vast areas with millimetric accuracy."
     }
@@ -46,54 +47,55 @@ export function DroneShowcase() {
                             Our fleet covers the entire spectrum of autonomous operations, from long-range surveillance to precision heavy lifting.
                         </p>
                     </div>
-                    <Button variant="outline" className="gap-2 rounded-full border-border hover:bg-muted">
+                    <Button variant="outline" className="gap-2 rounded-full border-none bg-white/5 hover:bg-white/10 backdrop-blur-md transition-all duration-300 text-white hover:text-cyan-400 shadow-lg shadow-black/20">
                         View All Models <ArrowUpRight className="w-4 h-4" />
                     </Button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {drones.map((drone, index) => (
-                        <motion.div
-                            key={drone.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className="group relative bg-card border border-border rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-colors duration-300 shadow-sm"
-                        >
-                            <div className="aspect-[4/3] bg-muted/50 relative p-6 flex items-center justify-center">
-                                {/* Image Placeholder */}
-                                <div className="w-full h-full bg-muted rounded-xl flex items-center justify-center text-muted-foreground font-mono text-sm border border-border group-hover:scale-105 transition-transform duration-500">
-                                    Image: {drone.name}
-                                </div>
+                        <Reveal key={drone.id} variant="fade-up" delay={index * 0.1} width="100%">
+                            <div
+                                className="group relative bg-gradient-to-b from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2 ring-1 ring-white/10 hover:ring-cyan-500/30"
+                            >
+                                <div className="aspect-[4/3] relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
 
-                                <div className="absolute top-4 left-4">
-                                    <span className="px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-xs font-medium text-white border border-white/10">
-                                        {drone.category}
-                                    </span>
-                                </div>
-                            </div>
+                                    <Image
+                                        src={drone.image}
+                                        alt={drone.name}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
 
-                            <div className="p-8">
-                                <h3 className="text-2xl font-bold mb-3">{drone.name}</h3>
-                                <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
-                                    {drone.description}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {drone.specs.map((spec) => (
-                                        <span key={spec} className="bg-muted px-2 py-1 rounded text-xs text-muted-foreground border border-border">
-                                            {spec}
+                                    <div className="absolute top-4 left-4 z-20">
+                                        <span className="px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-xs font-medium text-white ring-1 ring-white/20">
+                                            {drone.category}
                                         </span>
-                                    ))}
+                                    </div>
                                 </div>
 
-                                <Button className="w-full bg-muted hover:bg-muted/80 text-foreground border-none group/btn">
-                                    View Specs
-                                    <ChevronRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                                </Button>
+                                <div className="p-8">
+                                    <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">{drone.name}</h3>
+                                    <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
+                                        {drone.description}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {drone.specs.map((spec) => (
+                                            <span key={spec} className="bg-muted px-2 py-1 rounded text-xs text-muted-foreground border border-border">
+                                                {spec}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <Button className="w-full bg-muted hover:bg-cyan-500 hover:text-white text-foreground border-none group/btn transition-colors duration-300">
+                                        View Specs
+                                        <ChevronRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                                    </Button>
+                                </div>
                             </div>
-                        </motion.div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
