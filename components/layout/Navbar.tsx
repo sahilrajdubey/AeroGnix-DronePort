@@ -22,21 +22,21 @@ export function Navbar() {
 
     return (
         <nav
-            className="fixed top-4 left-4 right-4 z-50 rounded-2xl border border-white/10 shadow-lg bg-white/70 dark:bg-black/60 backdrop-blur-md transition-all duration-300"
+            className="fixed top-4 left-20 right-20 z-50 rounded-4xl border border-white/10 shadow-lg bg-white/70 dark:bg-black/60 backdrop-blur-md transition-all duration-300"
         >
-            <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+            <div className="container mx-auto px-10 py-3 flex items-center justify-between">
                 <Link href="/" className="hover:opacity-80 transition-opacity">
                     <Image
                         src="/hello.png"
                         alt="AeroGnix Logo"
-                        width={120}
-                        height={40}
-                        className="h-8 w-auto object-contain"
+                        width={520}
+                        height={100}
+                        className="h-10 w-auto object-contain"
                     />
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-2">
+                <div className="hidden md:flex items-center gap-2 absolute left-1/2 transform -translate-x-1/2">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
@@ -48,11 +48,8 @@ export function Navbar() {
                     ))}
                 </div>
 
-                <div className="hidden md:flex items-center gap-4">
+                <div className="hidden md:flex  items-center gap-2">
 
-                    <Button variant="ghost" className="text-foreground hover:bg-black/5 dark:hover:bg-white/10 rounded-full">
-                        Log In
-                    </Button>
                     <Button className="rounded-full px-6 bg-cyan-500 hover:bg-cyan-600 text-white border-0">
                         Contact Sales
                     </Button>
@@ -80,11 +77,8 @@ export function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <div className="h-[1px] bg-border my-2" />
+                    <div className="h-[1px] bg-border my-32" />
 
-                    <Button variant="outline" className="w-full rounded-xl">
-                        Log In
-                    </Button>
                     <Button className="w-full rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white">Contact Sales</Button>
                 </div>
             )}
