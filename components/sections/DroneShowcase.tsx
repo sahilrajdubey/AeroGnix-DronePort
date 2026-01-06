@@ -11,7 +11,7 @@ const drones = [
         id: 1,
         name: "AG-X1 Sentinel",
         category: "Surveillance & Recon",
-        image: "/d1.jpeg",
+        image: "/d4.jpeg",
         specs: ["45m Flight Time", "12km Range", "AI Object Detection"],
         description: "Long-range autonomous surveillance drone with thermal imaging and real-time edge processing."
     },
@@ -19,7 +19,7 @@ const drones = [
         id: 2,
         name: "AG-H2 Heavy Lift",
         category: "Logistics & Transport",
-        image: "/d2.jpeg",
+        image: "/d5.jpeg",
         specs: ["25kg Payload", "Hybrid Power", "All-Weather"],
         description: "Heavy-lift multi-rotor designed for autonomous cargo delivery and industrial equipment transport."
     },
@@ -27,7 +27,7 @@ const drones = [
         id: 3,
         name: "AG-S3 Mapper",
         category: "Mapping & Survey",
-        image: "/d3.jpg",
+        image: "/d3.jpg", 
         specs: ["cm-level RTK", "100MP Camera", "LiDAR Ready"],
         description: "High-precision mapping drone capable of surveying vast areas with millimetric accuracy."
     }
